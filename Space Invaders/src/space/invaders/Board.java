@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package space.invaders;
+package com.company;
 
 import java.awt.Dimension;
 import javax.swing.*;
@@ -22,9 +22,6 @@ public class Board extends JFrame{
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        
-//        if(player.die)
-//            file.add(score);
     }
 }
 
