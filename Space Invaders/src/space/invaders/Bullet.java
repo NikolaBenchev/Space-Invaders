@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.company;
+package space.invaders;
 
-/**
- *
- * @author kolio
- */
 public class Bullet extends Unit{
     private int speed;
 
@@ -27,7 +18,7 @@ public class Bullet extends Unit{
 
     public void move() {
         Position newPos = this.getPosition();
-        newPos.y += this.speed;
+        newPos.setY(newPos.getY() + this.speed);
 
         this.setPosition(newPos);
     }

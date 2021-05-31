@@ -1,4 +1,4 @@
-package com.company;
+package space.invaders;
 
 public abstract class Unit {
     private Position position;
@@ -10,8 +10,8 @@ public abstract class Unit {
     }
     
     public void setPosition(Position value){
-        this.position.x = value.x;
-        this.position.y = value.y;
+        this.position.setX(value.getX());
+        this.position.setY(value.getY());
     }
 
     public Position getPosition(){
@@ -28,6 +28,11 @@ public abstract class Unit {
 
     public int getHp(){
         return this.hp;
+    }
+    
+    public boolean collide(Unit unit){
+        return (this.getPosition().getX() == unit.getPosition().getX() && 
+                this.getPosition().getY() == unit.getPosition().getY());
     }
     
 }

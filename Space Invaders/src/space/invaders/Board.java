@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.company;
+package space.invaders;
 
 import java.awt.Dimension;
 import javax.swing.*;
 
-/**
- *
- * @author kolio
- */
 public class Board extends JFrame{
+    
     private JPanel panel = new JPanel(); 
     public void run(){
-        this.setSize(800, 800);
+        this.setSize(20*Main.SIZE, 15*Main.SIZE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.add(panel);
         
@@ -23,6 +15,7 @@ public class Board extends JFrame{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
+       
 }
 
 
