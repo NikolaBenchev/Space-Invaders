@@ -11,8 +11,8 @@ package space.invaders;
  */
 public class Enemy extends Unit{
     private int score;
-    Enemy(Position position, int hp, int speed, int score){
-        super(position, hp, speed);
+    Enemy(Position position, int hp, int speed, int score, String name){
+        super(position, hp, speed, name);
         this.setScore(score);
     }
 
@@ -25,7 +25,7 @@ public class Enemy extends Unit{
     }
 
     public Bullet shoot(){
-        Bullet bullet = new Bullet(this.getPosition(), 5, 100);
+        Bullet bullet = new Bullet(this.getPosition(), 5, 100, "enemyBullet");
         return bullet;
     }
 }

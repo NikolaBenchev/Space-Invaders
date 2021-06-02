@@ -1,14 +1,36 @@
 package space.invaders;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
 public abstract class Unit {
     private Position position;
     private int hp;
     private int speed;
+    private BufferedImage img;
 
-    Unit(Position position, int hp, int speed){
+    Unit(Position position, int hp, int speed, String name){
         this.position = new Position(position.getX(), position.getY());
         setHp(hp);
         setSpeed(speed);
+        this.setImg(name);
+    }
+
+    public BufferedImage getImg() {
+        return img;
+    }
+
+    public void setImg(String name) {
+        try {                
+            System.out.println("Space Invaders/src/img/" + name + ".png");
+            img = ImageIO.read(new File("img/" + name + ".png"));
+       } catch (IOException ex) {
+            System.out.println("not found");
+       }
     }
     
     public void setPosition(Position value){
@@ -50,4 +72,7 @@ public abstract class Unit {
                 this.getPosition().getY() == unit.getPosition().getY());
     }
     
+    public void draw(Graphics g, JPanel board){
+        g.drawImage(this.img, this.position.getX(), this.position.getY(), Main.SIZE, Main.SIZE, board);
+    }
 }

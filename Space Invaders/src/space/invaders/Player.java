@@ -5,8 +5,8 @@ import java.awt.Graphics;
 public class Player extends Unit{
     private int score;
     
-    Player(Position position, int Hp, int speed){
-        super(position, Hp, speed);
+    Player(Position position, int Hp, int speed, String name){
+        super(position, Hp, speed, name);
         this.score = 0;
     }
     
@@ -18,7 +18,8 @@ public class Player extends Unit{
         return score;
     }
     
-    public void draw(Graphics g){
-        g.drawRect(this.getPosition().getX(), this.getPosition().getY(), Main.SIZE, Main.SIZE);
+    public Bullet shoot(){
+        Bullet bullet = new Bullet(this.getPosition(), 1, -8, "playerBullet");
+        return bullet;
     }
 }

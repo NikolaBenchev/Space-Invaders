@@ -14,7 +14,7 @@ public class Window extends JFrame{
     private Board board = new Board();
     
     public Window(){
-        this.setSize(20*Main.SIZE, 15*Main.SIZE);
+        this.setSize(Main.WINDOW_WIDTH, Main.WINDOW_HEIGHT);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.add(board);
         

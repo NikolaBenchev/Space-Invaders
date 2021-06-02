@@ -2,8 +2,8 @@ package space.invaders;
 
 public class Shield extends Unit{
     
-    public Shield(Position position, int hp, int speed) {
-        super(position, hp, speed);
+    public Shield(Position position, int hp, int speed, String name) {
+        super(position, hp, speed, name);
     }
     
     
