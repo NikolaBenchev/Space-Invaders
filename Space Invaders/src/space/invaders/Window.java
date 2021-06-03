@@ -21,7 +21,7 @@ public class Window extends JFrame{
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-    }   
+    }
 }
 
 

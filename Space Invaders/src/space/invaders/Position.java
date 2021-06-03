@@ -17,13 +17,14 @@ public class Position {
     }
 
     public void setX(int x) {
-        if(this.x < 0 || this.x > Main.WINDOW_WIDTH)
+        if(x < 0 || x > Main.WINDOW_WIDTH - Main.SIZE)
             return;
         this.x = x;
     }
 
     public void setY(int y) {
-        if(y < 0 || y > Main.WINDOW_HEIGHT)
+        if(y < -Main.SIZE || y > Main.WINDOW_HEIGHT - Main.SIZE)
+            return;
         this.y = y;
     }
 }
