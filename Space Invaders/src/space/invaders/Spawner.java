@@ -19,7 +19,7 @@ public class Spawner {
     }
     
     public Enemy spawnEnemy(){
-        System.out.println("spawn");
+        System.out.println("spawn enemy");
         Random rand = new Random();
         int x;
         
@@ -36,8 +36,19 @@ public class Spawner {
         return enemy;
     }
     
+    public Shield spawnShield()
+    {
+        //System.out.println("spawn shield");
+        Random rand = new Random();
+        //int x = rand.nextInt(Main.WINDOW_WIDTH / Main.SIZE * 2);
+        Shield shield= new Shield(new Position(Main.SIZE, Main.WINDOW_HEIGHT + Main.SIZE), 5, 0, "shield");
+        return shield;
+        
+    }
+    /*
     public Enemy spawnEnemy(Position pos){
         Enemy enemy = new Enemy(pos, 1, 1, 10, "enemy1");
         return enemy;
     }
+    */
 }

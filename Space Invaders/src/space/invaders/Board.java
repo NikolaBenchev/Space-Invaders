@@ -27,6 +27,7 @@ public class Board extends JPanel implements KeyListener, ActionListener{
     private Player player;
     private LinkedList<Bullet> bullets = new LinkedList<>();
     private LinkedList<Enemy> enemies = new LinkedList<>();
+    private LinkedList<Shield> shields = new LinkedList<>();
     private float attackTime = 0;   
     private float currentSpawnTime = 0;
     private Spawner spawner = new Spawner();
@@ -44,6 +45,7 @@ public class Board extends JPanel implements KeyListener, ActionListener{
         player = new Player(new Position(0, Main.WINDOW_HEIGHT - Main.SIZE), 3, Main.SIZE / 2, "player");
         attackTime = player.getAttackSpeed();
         spawner = new Spawner();
+
         
 //        for(int i = 0; i < 15; i++){
 //            Enemy newEnemy = spawner.spawnEnemy(new Position(i * Main.SIZE / 2, Main.SIZE));
@@ -101,6 +103,9 @@ public class Board extends JPanel implements KeyListener, ActionListener{
             currentSpawnTime = 0;
         }
         
+        Shield newShield = spawner.spawnShield();
+        shields.add(newShield);
+        
         for(int i = 0; i < bullets.size(); i++){
             bullets.get(i).move(0, 1);
             
@@ -118,7 +123,25 @@ public class Board extends JPanel implements KeyListener, ActionListener{
                     break;
                 }
             }
+            
+            for (int j = 0; j < shields.size(); j++) {
+                if(bullets.get(i).collide(shields.get(j))){
+                    System.out.println("collision");
+                    bullets.remove(i);                   
+                    shields.get(j).lowerHp();
+                    System.out.println(shields.get(j).getHp());
+                    if (shields.get(j).getHp() == 0)
+                    {
+                        System.out.println("test");
+                        shields.remove(j);
+                    }
+                    break;
+                }
+            }
+            
         }
+        
+        
         repaint();
     }
     
@@ -126,12 +149,16 @@ public class Board extends JPanel implements KeyListener, ActionListener{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
-        for(int i = 0; i < bullets.size(); i++){
+        for(int i = 0; i < bullets.size(); i++) {
             bullets.get(i).draw(g, this);
         }
         
         for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).draw(g, this);
+        }
+        
+        for (int i = 0; i < shields.size(); i++) {
+            shields.get(i).draw(g, this);
         }
         
         player.draw(g, this);

@@ -26,7 +26,7 @@ public abstract class Unit {
 
     public void setImg(String name) {
         try {                
-            System.out.println("Space Invaders/src/img/" + name + ".png");
+            //System.out.println("Space Invaders/src/img/" + name + ".png");
             img = ImageIO.read(new File("img/" + name + ".png"));
        } catch (IOException ex) {
             System.out.println("not found");
