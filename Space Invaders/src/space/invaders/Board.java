@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package space.invaders;
 
 import java.awt.Color;
@@ -15,42 +10,22 @@ import java.util.LinkedList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
-/**
- *
- * @author 2017_stoyanio
- */
 public class Board extends JPanel implements KeyListener, ActionListener{
 
-    private int delay = 3;
     private Timer timer;
-    private Player player;
+    private int delay = 3;
+    private Player player = new Player(new Position(0, Main.WINDOW_HEIGHT - Main.SIZE), 3, Main.SIZE / 2, "player");
     private LinkedList<Bullet> bullets = new LinkedList<>();
     private LinkedList<Enemy> enemies = new LinkedList<>();
     private LinkedList<Shield> shields = new LinkedList<>();
-    private float attackTime = 0;   
-    private float currentSpawnTime = 0;
     private Spawner spawner = new Spawner();
     private JLabel scoreLabel = new JLabel("0");
     
     public Board(){
-        this.setBackground(Color.black);
-        addKeyListener(this);
-        setFocusable(true);
-        setFocusTraversalKeysEnabled(false);
-        scoreLabel.setForeground(Color.green);
-        this.add(scoreLabel);
+        setup();
         timer = new Timer(delay, this);
         timer.start();
-        player = new Player(new Position(0, Main.WINDOW_HEIGHT - Main.SIZE), 3, Main.SIZE / 2, "player");
-        attackTime = player.getAttackSpeed();
-        spawner = new Spawner();
-
-        
-//        for(int i = 0; i < 15; i++){
-//            Enemy newEnemy = spawner.spawnEnemy(new Position(i * Main.SIZE / 2, Main.SIZE));
-//            enemies.add(newEnemy);
-//        }
+        shields.add(spawner.spawnShield());
     }
     
     @Override
@@ -61,28 +36,20 @@ public class Board extends JPanel implements KeyListener, ActionListener{
     public void keyPressed(KeyEvent e) {
         System.out.println(player.getPosition().getX());
         switch(e.getKeyCode()){
-//            case 87: // W 
-//            case 38:
-//                player.move(0, -1);
-//                break;
             case 65: // A
             case 37:
                 player.move(-1, 0);
                 break;
-//            case 83: // S
-//            case 40:
-//                player.move(0, 1);
-//                break;
             case 68: // D
             case 39:
                 player.move(1, 0);
                 break;
             case 32: // Space (shoot)
-                if(attackTime < player.getAttackSpeed())
+                if(player.getCurrentAttackTime() < player.getAttackSpeed())
                     break;
                 Bullet newBullet = player.shoot();
                 bullets.add(newBullet);
-                attackTime = 0;
+                player.setCurrentAttackTime(0f);
                 break;
         }
         repaint();
@@ -94,54 +61,58 @@ public class Board extends JPanel implements KeyListener, ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        attackTime += 0.005;
-        currentSpawnTime += 0.005;
+        player.addToCurrentAttackTime(0.005f);
+        spawner.addToCurrentSpawnTime(0.005f);
         
-        if(currentSpawnTime > spawner.getSpawnTime()){
+        if(spawner.getCurrentSpawnTime() > spawner.getSpawnTime()){
             Enemy newEnemy = spawner.spawnEnemy();
-            enemies.add(newEnemy);
-            currentSpawnTime = 0;
+            if(newEnemy != null){
+                enemies.add(newEnemy);
+                spawner.setCurrentSpawnTime(0);
+            }
         }
         
-        Shield newShield = spawner.spawnShield();
-        shields.add(newShield);
+
         
         for(int i = 0; i < bullets.size(); i++){
             bullets.get(i).move(0, 1);
             
+            boolean isBulletRemoved = false;
             if(bullets.get(i).getPosition().getY() < 0 || bullets.get(i).getPosition().getY() > Main.WINDOW_HEIGHT - Main.SIZE){
                 bullets.remove(i);
-                break;
+                isBulletRemoved = true;
             }
             
-            for (int j = 0; j < enemies.size(); j++) {
-                if(bullets.get(i).collide(enemies.get(j))){
-                    bullets.remove(i);
-                    player.addScore(enemies.get(j).getScore());
-                    enemies.remove(j);
-                    scoreLabel.setText(String.valueOf(player.getScore()));
-                    break;
-                }
-            }
-            
-            for (int j = 0; j < shields.size(); j++) {
-                if(bullets.get(i).collide(shields.get(j))){
-                    System.out.println("collision");
-                    bullets.remove(i);                   
-                    shields.get(j).lowerHp();
-                    System.out.println(shields.get(j).getHp());
-                    if (shields.get(j).getHp() == 0)
-                    {
-                        System.out.println("test");
-                        shields.remove(j);
+            if(!isBulletRemoved){
+                for (int j = 0; j < shields.size(); j++) {
+                    if(bullets.get(i).collide(shields.get(j))){
+                        bullets.remove(i);    
+                        isBulletRemoved = true;
+                        
+                        shields.get(j).lowerHp();
+                        if (shields.get(j).getHp() == 0)
+                            shields.remove(j);
                     }
-                    break;
                 }
             }
             
+            if(!isBulletRemoved){
+                for (int j = 0; j < enemies.size(); j++) {
+                    if(bullets.get(i).collide(enemies.get(j))){
+                        bullets.remove(i);
+                        
+                        player.addScore(enemies.get(j).getScore());
+                        scoreLabel.setText(String.valueOf(player.getScore()));
+                        
+                        spawner.freeSpawnPoint(enemies.get(j).getPosition().getX() / Main.SIZE * 2);
+                        enemies.remove(j);
+                        
+                        isBulletRemoved = true;
+                        break;
+                    }
+                }
+            }
         }
-        
-        
         repaint();
     }
     
@@ -162,5 +133,14 @@ public class Board extends JPanel implements KeyListener, ActionListener{
         }
         
         player.draw(g, this);
+    }
+    
+    private void setup(){
+        this.setBackground(Color.black);
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
+        scoreLabel.setForeground(Color.green);
+        this.add(scoreLabel);
     }
 }
