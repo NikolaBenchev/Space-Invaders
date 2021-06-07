@@ -26,6 +26,8 @@ public class Board extends JPanel implements KeyListener, ActionListener{
         timer = new Timer(delay, this);
         timer.start();
         shields.add(spawner.spawnShield());
+        shields.add(spawner.spawnShield());
+        shields.add(spawner.spawnShield());
     }
     
     @Override
@@ -62,14 +64,25 @@ public class Board extends JPanel implements KeyListener, ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         player.addToCurrentAttackTime(0.005f);
-        spawner.addToCurrentSpawnTime(0.005f);
+        spawner.addToCurrentEnemySpawnTime(0.005f);
+        spawner.addToCurrentShieldSpawnTime(0.005f);
         
-        if(spawner.getCurrentSpawnTime() > spawner.getSpawnTime()){
+        if(spawner.getCurrentEnemySpawnTime() > spawner.getSpawnEnemyTime()){
             Enemy newEnemy = spawner.spawnEnemy();
             if(newEnemy != null){
                 enemies.add(newEnemy);
-                spawner.setCurrentSpawnTime(0);
-            }
+                spawner.setCurrentEnemySpawnTime(0);
+            } else
+                spawner.setCurrentEnemySpawnTime(0);                                        
+        }
+        
+        if(spawner.getCurrentShieldSpawnTime()> spawner.getSpawnShieldTime()){
+            Shield newShield = spawner.spawnShield();
+            if(newShield != null){
+                shields.add(newShield);
+                spawner.setCurrentShieldSpawnTime(0);
+            } else
+                spawner.setCurrentShieldSpawnTime(0);                                        
         }
         
 
@@ -90,8 +103,12 @@ public class Board extends JPanel implements KeyListener, ActionListener{
                         isBulletRemoved = true;
                         
                         shields.get(j).lowerHp();
-                        if (shields.get(j).getHp() == 0)
+                        if (shields.get(j).getHp() == 0) {
+                            int index = shields.get(j).getPosition().getX() / Main.SIZE / 3;
+                            spawner.freeShieldSpawnPoint(index);
                             shields.remove(j);
+                        }
+                        break;
                     }
                 }
             }
@@ -104,7 +121,10 @@ public class Board extends JPanel implements KeyListener, ActionListener{
                         player.addScore(enemies.get(j).getScore());
                         scoreLabel.setText(String.valueOf(player.getScore()));
                         
-                        spawner.freeSpawnPoint(enemies.get(j).getPosition().getX() / Main.SIZE * 2);
+                        float index = enemies.get(j).getPosition().getX() * 2 / Main.SIZE;
+                        
+                        System.out.println(index);
+                        spawner.freeEnemySpawnPoint((int)index);
                         enemies.remove(j);
                         
                         isBulletRemoved = true;
