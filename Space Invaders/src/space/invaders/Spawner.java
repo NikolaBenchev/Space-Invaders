@@ -12,10 +12,9 @@ public class Spawner {
     private float[] shieldSpawnPoints = {1, 3.5f, 6};
     private boolean[] freeShieldSpawnPoints = new boolean[3];
     
-
-
     public Spawner(){
         this.spawnEnemyTime = 3;
+        this.spawnShieldTime = 10;
     }
     
     public Enemy spawnEnemy(){

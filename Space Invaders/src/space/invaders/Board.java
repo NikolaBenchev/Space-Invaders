@@ -53,7 +53,7 @@ public class Board extends JPanel implements KeyListener, ActionListener{
                 bullets.add(newBullet);
                 player.setCurrentAttackTime(0f);
                 break;
-        }
+        } 
         repaint();
     }
 
@@ -76,15 +76,19 @@ public class Board extends JPanel implements KeyListener, ActionListener{
                 spawner.setCurrentEnemySpawnTime(0);                                        
         }
         
-        if(spawner.getCurrentShieldSpawnTime()> spawner.getSpawnShieldTime()){
-            Shield newShield = spawner.spawnShield();
-            if(newShield != null){
-                shields.add(newShield);
-                spawner.setCurrentShieldSpawnTime(0);
-            } else
-                spawner.setCurrentShieldSpawnTime(0);                                        
-        }
-        
+        if (shields.size() == 0){
+            if(spawner.getCurrentShieldSpawnTime() > spawner.getSpawnShieldTime()){
+                Shield newShield = spawner.spawnShield();
+                System.out.println("spawn shield");
+                if(newShield != null){
+                    shields.add(newShield);
+                    spawner.setCurrentShieldSpawnTime(0);
+                } else
+                    spawner.setCurrentShieldSpawnTime(0);                                        
+            }
+        } else 
+            spawner.setCurrentShieldSpawnTime(0);
+         
 
         
         for(int i = 0; i < bullets.size(); i++){

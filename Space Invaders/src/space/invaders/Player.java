@@ -11,14 +11,12 @@ public class Player extends Unit{
         super(position, Hp, speed, name);
         this.score = 0;
         this.currentAttackTime = 0.5f;
-    }
-    
+    }   
     
     public Bullet shoot(){
         Bullet bullet = new Bullet(this.getPosition(), 1, -8, "playerBullet");
         return bullet;
     }
-
     
     public void addScore(int value){
         this.score += value;

@@ -11,6 +11,7 @@ public class Menu_Help extends javax.swing.JFrame {
         this.setSize(Main.WINDOW_WIDTH, Main.WINDOW_HEIGHT);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.setResizable(false);
     }
 
     @SuppressWarnings("unchecked")
