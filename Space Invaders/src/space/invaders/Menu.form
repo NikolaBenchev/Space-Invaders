@@ -72,7 +72,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/space/invaders/enemy1_big.gif"/>
+              <Image iconType="3" name="/img/enemy1_big.gif"/>
             </Property>
           </Properties>
           <Constraints>
@@ -84,7 +84,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/space/invaders/enemy3_big.gif"/>
+              <Image iconType="3" name="/img/enemy3_big.gif"/>
             </Property>
           </Properties>
           <Constraints>
@@ -96,7 +96,7 @@
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/space/invaders/enemy2_big.gif"/>
+              <Image iconType="3" name="/img/enemy2_big.gif"/>
             </Property>
           </Properties>
           <Constraints>
@@ -108,7 +108,7 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/space/invaders/playerBullet_big.png"/>
+              <Image iconType="3" name="/img/playerBullet_big.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -120,7 +120,7 @@
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/space/invaders/player_big.png"/>
+              <Image iconType="3" name="/img/player_big.png"/>
             </Property>
           </Properties>
           <Constraints>
