@@ -1,4 +1,4 @@
-package space.invaders;
+package com.company;
 
 import java.awt.Graphics;
 
