@@ -1,4 +1,4 @@
-package com.company;
+package space.invaders;
 
 import java.util.Random;
 
@@ -38,7 +38,7 @@ public class Spawner {
         
         enemySpawnPoints[x] = true;
         
-        Enemy enemy = new Enemy(new Position(x * Main.SIZE / 2, 0), 1, 1, 10, "enemy1");
+        Enemy enemy = new Enemy(new Position(x * Main.SIZE / 2, 0), 1, Main.SIZE / 2, 10, "enemy1");
         return enemy;
     }
     

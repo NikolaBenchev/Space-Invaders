@@ -1,4 +1,4 @@
-package com.company;
+package space.invaders;
 
 public class Position {
     private int x;
@@ -23,7 +23,7 @@ public class Position {
     }
 
     public void setY(int y) {
-        if(y < -Main.SIZE || y > Main.WINDOW_HEIGHT - Main.SIZE)
+        if(y < -Main.SIZE || y > Main.WINDOW_HEIGHT)
             return;
         this.y = y;
     }
