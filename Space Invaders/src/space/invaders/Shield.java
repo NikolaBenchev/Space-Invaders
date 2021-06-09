@@ -1,4 +1,4 @@
-package space.invaders;
+package com.company;
 
 public class Shield extends Unit{
     

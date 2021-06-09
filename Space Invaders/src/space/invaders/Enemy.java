@@ -1,4 +1,4 @@
-package space.invaders;
+package com.company;
 
 public class Enemy extends Unit{
     private int score;

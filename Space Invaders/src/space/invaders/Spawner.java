@@ -1,14 +1,18 @@
-package space.invaders;
+package com.company;
 
 import java.util.Random;
 
 public class Spawner {
     private float currentEnemySpawnTime = 0;
+    // time after which an enemy should spawn
     private float spawnEnemyTime;
-    private boolean[] enemySpawnPoints = new boolean[Main.WINDOW_WIDTH / Main.SIZE * 2];
+    // all possible spawn points for the enemies
+    private boolean[] enemySpawnPoints = new boolean[Main.BOARD_WIDTH];
     
     private float currentShieldSpawnTime = 0;
+    // time after which a shield should spawn
     private float spawnShieldTime;
+    // all possible spawn points for the shields
     private float[] shieldSpawnPoints = {1, 3.5f, 6};
     private boolean[] freeShieldSpawnPoints = new boolean[3];
     
@@ -18,15 +22,17 @@ public class Spawner {
     }
     
     public Enemy spawnEnemy(){
+        // selects a random point until it has chosen an empty one
         Random rand = new Random();
         int x;
         
         int resets = 0;
         do{
-            x = rand.nextInt(Main.WINDOW_WIDTH / Main.SIZE * 2);
+            x = rand.nextInt(Main.BOARD_WIDTH);
             resets++;
         }while(enemySpawnPoints[x] && resets < 100);
-        
+
+        // if we didnt hit and empty spot 100 times in a roll return null (dont spawn an enemy)
         if(resets >= 100)
             return null;
         
@@ -37,6 +43,7 @@ public class Spawner {
     }
     
     public Shield spawnShield(){
+        // identical to the spawnEnemy function
         Random rand = new Random();
         int x;
         
@@ -93,9 +100,7 @@ public class Spawner {
         return spawnShieldTime;
     }
     
-    public void setCurrentShieldSpawnTime(float currentShieldSpawnTime) {
-        this.currentShieldSpawnTime = currentShieldSpawnTime;
-    }
+    public void setCurrentShieldSpawnTime(float currentShieldSpawnTime) { this.currentShieldSpawnTime = currentShieldSpawnTime; }
 
     public void setSpawnShieldTime(float spawnShieldTime) {
         this.spawnShieldTime = spawnShieldTime;
@@ -103,12 +108,5 @@ public class Spawner {
     
     public void addToCurrentShieldSpawnTime(float value) {
         this.currentShieldSpawnTime += value;
-    }    
-//    public Enemy testSpawnEnemy(Position pos){
-//        Enemy enemy = new Enemy(pos, 1, 1, 10, "enemy1");
-//        return enemy;
-//    }
-
-
-   
+    }
 }
