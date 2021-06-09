@@ -1,15 +1,11 @@
-package com.company;
+package space.invaders;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.LinkedList;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
 import javax.swing.Timer;
+
 public class Board extends JPanel implements KeyListener, ActionListener{
 
     private Timer timer;
@@ -20,6 +16,10 @@ public class Board extends JPanel implements KeyListener, ActionListener{
     private LinkedList<Shield> shields = new LinkedList<>();
     private Spawner spawner = new Spawner();
     private JLabel scoreLabel = new JLabel("0");
+    private float enemyShootTime = 3f;
+    private Random random = new Random();
+    private float currentEnemyShootTime = 0;
+    private boolean gameOver = false;
     
     public Board(){
         // setup the board
@@ -31,6 +31,9 @@ public class Board extends JPanel implements KeyListener, ActionListener{
         shields.add(spawner.spawnShield());
         shields.add(spawner.spawnShield());
         shields.add(spawner.spawnShield());
+        
+        
+        enemyShootTime += random.nextFloat();
     }
     
     @Override
@@ -71,13 +74,27 @@ public class Board extends JPanel implements KeyListener, ActionListener{
         player.addToCurrentAttackTime(0.005f);
         spawner.addToCurrentEnemySpawnTime(0.005f);
         spawner.addToCurrentShieldSpawnTime(0.005f);
+        
+        if (enemies.size() > 0)
+        {
+            currentEnemyShootTime += 0.005f;
+        }
+        
+        if (currentEnemyShootTime > enemyShootTime)
+        {
+            int index = random.nextInt(enemies.size());
+            Bullet bullet = enemies.get(index).shoot();
+            bullets.add(bullet); 
+            currentEnemyShootTime = 0;
+            enemyShootTime += random.nextFloat() - 0.5f;
+        } 
 
         // spawn the enemy
         if(spawner.getCurrentEnemySpawnTime() > spawner.getSpawnEnemyTime()){
             Enemy newEnemy = spawner.spawnEnemy();
             if(newEnemy != null){
                 // add the enemy to an array
-                enemies.add(newEnemy);
+                enemies.add(newEnemy);                
                 // reset the timer for the enemy
                 spawner.setCurrentEnemySpawnTime(0);
             } else
@@ -135,7 +152,7 @@ public class Board extends JPanel implements KeyListener, ActionListener{
             // if it has not been removed check collision with all the enemies
             if(!isBulletRemoved){
                 for (int j = 0; j < enemies.size(); j++) {
-                    if(bullets.get(i).collide(enemies.get(j))){
+                    if(bullets.get(i).collide(enemies.get(j)) && bullets.get(i).getSpeed() < 0){
                         bullets.remove(i);
                         
                         player.addScore(enemies.get(j).getScore());
@@ -150,12 +167,61 @@ public class Board extends JPanel implements KeyListener, ActionListener{
                         isBulletRemoved = true;
                         break;
                     }
+
+                }
+                if (bullets.get(i).collide(player)) {
+                    System.out.println("collision with player");
+                    player.lowerHp();
+                    bullets.remove(i);
+
+                }
+            }            
+        }
+        
+        
+
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).setCurrentMoveTime(enemies.get(i).getCurrentMoveTime() + 0.005f);            
+                
+            if (enemies.get(i).getCurrentMoveTime() > enemies.get(i).getMoveTime()){
+                enemies.get(i).move(0, 1);               
+                float index = enemies.get(i).getPosition().getX() * 2 / Main.SIZE;                        
+                spawner.freeEnemySpawnPoint((int)index);
+                enemies.get(i).setCurrentMoveTime(0);
+            }
+            
+            for (int j = 0; j < shields.size(); j++) {
+                if (enemies.get(i).collide(shields.get(j)))
+                {
+                    shields.get(j).lowerHp();
+                    enemies.remove(i);
+                    if (shields.get(j).getHp() == 0)
+                    {
+                        shields.remove(j);
+                    }                  
                 }
             }
+            
+            if(enemies.get(i).getPosition().getY() >= Main.WINDOW_HEIGHT - Main.SIZE){
+                player.lowerHp();
+                enemies.remove(i);
+            }
         }
-
+       
+        if (player.getHp() == 0) {
+            gameOver = true;
+        }
+        
+        if (gameOver){
+            player = new Player(new Position(0, Main.WINDOW_HEIGHT - Main.SIZE), 3, Main.SIZE / 2, "player");
+            gameOver = false;
+            Menu menu = new Menu();
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.dispose();
+        } else {
+            repaint();
+        }
         // updates the graphics
-        repaint();
     }
 
     // draws everything
