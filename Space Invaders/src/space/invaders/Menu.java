@@ -20,6 +20,11 @@ public class Menu extends javax.swing.JFrame {
 
         pnlMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnPlay = new javax.swing.JButton();
         btnScore = new javax.swing.JButton();
@@ -32,10 +37,27 @@ public class Menu extends javax.swing.JFrame {
         pnlMenu.setBackground(new java.awt.Color(0, 0, 0));
         pnlMenu.setMaximumSize(new java.awt.Dimension(1024, 640));
         pnlMenu.setPreferredSize(new java.awt.Dimension(1024, 640));
+        pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Free Pixel", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 255, 0));
         jLabel1.setText("Space Invaders - Survival mode");
+        pnlMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/space/invaders/enemy1_big.gif"))); // NOI18N
+        pnlMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/space/invaders/enemy3_big.gif"))); // NOI18N
+        pnlMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 180, 78));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/space/invaders/enemy2_big.gif"))); // NOI18N
+        pnlMenu.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, 178, 99));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/space/invaders/playerBullet_big.png"))); // NOI18N
+        pnlMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 131, 59));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/space/invaders/player_big.png"))); // NOI18N
+        pnlMenu.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 190, 81));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -119,35 +141,13 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
-        pnlMenu.setLayout(pnlMenuLayout);
-        pnlMenuLayout.setHorizontalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jLabel1))
-                    .addGroup(pnlMenuLayout.createSequentialGroup()
-                        .addGap(354, 354, 354)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(127, Short.MAX_VALUE))
-        );
-        pnlMenuLayout.setVerticalGroup(
-            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
-        );
+        pnlMenu.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,6 +192,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnScore;
     private javax.swing.JButton btnSettings;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables
