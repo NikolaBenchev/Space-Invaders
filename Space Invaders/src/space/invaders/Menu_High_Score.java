@@ -48,11 +48,13 @@ public class Menu_High_Score extends javax.swing.JFrame {
         pnlScore.setMaximumSize(new java.awt.Dimension(1024, 640));
         pnlScore.setMinimumSize(new java.awt.Dimension(0, 0));
         pnlScore.setPreferredSize(new java.awt.Dimension(1024, 640));
+        pnlScore.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Free Pixel", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 255, 0));
         jLabel1.setText("Space Invaders - Survival mode");
+        pnlScore.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 11, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -106,43 +108,25 @@ public class Menu_High_Score extends javax.swing.JFrame {
         jLabel22.setForeground(new java.awt.Color(0, 255, 0));
         jLabel22.setText("9.");
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Free Pixel", 1, 36)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 255, 0));
-        jButton1.setText("< Back");
-        jButton1.setBorder(null);
-        jButton1.setFocusable(false);
-        jButton1.setMaximumSize(new java.awt.Dimension(104, 54));
-        jButton1.setMinimumSize(new java.awt.Dimension(104, 54));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel18)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(613, Short.MAX_VALUE))
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel16)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel22)
+                        .addComponent(jLabel18)))
+                .addContainerGap(846, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,37 +145,31 @@ public class Menu_High_Score extends javax.swing.JFrame {
                 .addComponent(jLabel19)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel20)
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
                 .addComponent(jLabel18)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel22)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel21)
-                .addGap(27, 27, 27)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout pnlScoreLayout = new javax.swing.GroupLayout(pnlScore);
-        pnlScore.setLayout(pnlScoreLayout);
-        pnlScoreLayout.setHorizontalGroup(
-            pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlScoreLayout.createSequentialGroup()
-                .addContainerGap(123, Short.MAX_VALUE)
-                .addGroup(pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(121, 121, 121))
-        );
-        pnlScoreLayout.setVerticalGroup(
-            pnlScoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlScoreLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(13, 13, 13)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        pnlScore.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, 460));
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Free Pixel", 1, 36)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 255, 0));
+        jButton1.setText("< Back");
+        jButton1.setBorder(null);
+        jButton1.setFocusable(false);
+        jButton1.setMaximumSize(new java.awt.Dimension(104, 54));
+        jButton1.setMinimumSize(new java.awt.Dimension(104, 54));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        pnlScore.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 149, 68));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
