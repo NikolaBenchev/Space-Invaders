@@ -1,6 +1,5 @@
 package space.invaders;
 
-
 /**
  *
  * @author EliteBook
@@ -45,19 +44,19 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setText("Space Invaders - Survival mode");
         pnlMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enemy1_big.gif"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/space/invaders/enemy1_big.gif"))); // NOI18N
         pnlMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enemy3_big.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/space/invaders/enemy3_big.gif"))); // NOI18N
         pnlMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 180, 78));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enemy2_big.gif"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/space/invaders/enemy2_big.gif"))); // NOI18N
         pnlMenu.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, 178, 99));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/playerBullet_big.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/space/invaders/playerBullet_big.png"))); // NOI18N
         pnlMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 131, 59));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/player_big.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/space/invaders/player_big.png"))); // NOI18N
         pnlMenu.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 190, 81));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
