@@ -2,7 +2,10 @@ package space.invaders;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.Timer;
 
@@ -20,6 +23,7 @@ public class Board extends JPanel implements KeyListener, ActionListener{
     private Random random = new Random();
     private float currentEnemyShootTime = 0;
     private boolean gameOver = false;
+    private float flashTime = 2f;
     
     public Board(){
         // setup the board
@@ -74,6 +78,12 @@ public class Board extends JPanel implements KeyListener, ActionListener{
         player.addToCurrentAttackTime(0.005f);
         spawner.addToCurrentEnemySpawnTime(0.005f);
         spawner.addToCurrentShieldSpawnTime(0.005f);
+        flashTime += 0.005f;
+        
+        if(flashTime < 0.05f)
+            this.setBackground(Color.red);
+        else
+            this.setBackground(Color.black);
         
         if (enemies.size() > 0)
         {
@@ -169,13 +179,12 @@ public class Board extends JPanel implements KeyListener, ActionListener{
                     }
 
                 }
-                if (bullets.get(i).collide(player)) {
-                    System.out.println("collision with player");
-                    player.lowerHp();
-                    bullets.remove(i);
-
-                }
-            }            
+            }    
+            if(!isBulletRemoved && bullets.get(i).collide(player)) {
+                flashTime = 0f;
+                player.lowerHp();
+                bullets.remove(i);
+            }
         }
         
         
@@ -213,6 +222,7 @@ public class Board extends JPanel implements KeyListener, ActionListener{
         }
         
         if (gameOver){
+            Main.addScore(player.getScore());
             player = new Player(new Position(0, Main.WINDOW_HEIGHT - Main.SIZE), 3, Main.SIZE / 2, "player");
             gameOver = false;
             Menu menu = new Menu();

@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.swing.*;
 
 public class Window extends JFrame{
@@ -21,12 +24,6 @@ public class Window extends JFrame{
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-    }
+    }   
 }
 
-
-/*
-    file -> list
-    list.add(newScore)
-    list.sort();
-*/

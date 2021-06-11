@@ -24,6 +24,7 @@ public class Spawner {
     public Enemy spawnEnemy(){
         // selects a random point until it has chosen an empty one
         Random rand = new Random();
+        
         int x;
         
         int resets = 0;
@@ -36,9 +37,13 @@ public class Spawner {
         if(resets >= 100)
             return null;
         
+        int chance = rand.nextInt(6),
+        score = chance < 3 ? 10 : chance < 5 ? 20 : 30;
+        String image = score == 10 ? "enemy1" : score == 20 ? "enemy2" : "enemy3";
+        
         enemySpawnPoints[x] = true;
         
-        Enemy enemy = new Enemy(new Position(x * Main.SIZE / 2, 0), 1, Main.SIZE / 2, 10, "enemy1");
+        Enemy enemy = new Enemy(new Position(x * Main.SIZE / 2, 0), 1, Main.SIZE / 2, score, image);
         return enemy;
     }
     

@@ -25,14 +25,14 @@ public class Player extends Unit{
         this.movingRight = movingRight;
     }
     
-    Player(Position position, int Hp, int speed, String name, int size){
-        super(position, Hp, speed, name, size);
+    Player(Position position, int Hp, int speed, String name){
+        super(position, Hp, speed, name);
         this.score = 0;
         this.currentAttackTime = 0.5f;
     }   
     
     public Bullet shoot(){
-        Bullet bullet = new Bullet(this.getPosition(), 1, -8, "playerBullet", Main.SIZE);
+        Bullet bullet = new Bullet(this.getPosition(), 1, -8, "playerBullet");
         return bullet;
     }
     
