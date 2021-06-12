@@ -54,7 +54,7 @@ public class Menu_Help extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Free Pixel", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 255, 0));
         jLabel1.setText("Space Invaders - Survival mode");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Free Pixel", 1, 30)); // NOI18N
@@ -75,7 +75,7 @@ public class Menu_Help extends javax.swing.JFrame {
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 117, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enemy2_medium.gif"))); // NOI18N
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 91, 27));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 91, 40));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enemy3_medium.gif"))); // NOI18N
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 109, 33));
