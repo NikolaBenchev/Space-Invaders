@@ -2,10 +2,14 @@ package space.invaders;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.Timer;
 
@@ -193,7 +197,10 @@ public class Board extends JPanel implements KeyListener, ActionListener{
             enemies.get(i).setCurrentMoveTime(enemies.get(i).getCurrentMoveTime() + 0.005f);            
                 
             if (enemies.get(i).getCurrentMoveTime() > enemies.get(i).getMoveTime()){
-                enemies.get(i).move(0, 1);               
+                int dir = random.nextInt(3);
+                System.out.println(dir);
+                if(dir == 2 ) dir=-1;
+                enemies.get(i).move(dir, 1);               
                 float index = enemies.get(i).getPosition().getX() * 2 / Main.SIZE;                        
                 spawner.freeEnemySpawnPoint((int)index);
                 enemies.get(i).setCurrentMoveTime(0);
@@ -238,6 +245,18 @@ public class Board extends JPanel implements KeyListener, ActionListener{
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        BufferedImage img;
+        try {                
+            //System.out.println("Space Invaders/src/img/" + name + ".png");
+            img = ImageIO.read(new File("img/Heart.png"));
+            for(int i = 0; i< player.getHp(); i++){
+                g.drawImage(img, -28 + Main.SIZE*i/2, -28, Main.SIZE, Main.SIZE, this);
+            }
+           
+       } catch (IOException ex) {
+            System.out.println("not found");
+       }
+        
         
         for(int i = 0; i < bullets.size(); i++) {
             bullets.get(i).draw(g, this);
