@@ -1,5 +1,10 @@
 package space.invaders;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.Scanner;
+
 /**
  *
  * @author EliteBook
@@ -13,6 +18,27 @@ public class Menu_High_Score extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
+        try{
+            File file = new File("src/space/invaders/scores.txt");
+            Scanner reader = new Scanner(file);
+            LinkedList<Integer> scores = new LinkedList<Integer>();
+
+            while(reader.hasNextInt()){
+                scores.add(reader.nextInt());
+            }
+            jLabel2.setText(String.valueOf(scores.get(0)));
+            jLabel3.setText(String.valueOf(scores.get(1)));
+            jLabel4.setText(String.valueOf(scores.get(2)));
+            jLabel5.setText(String.valueOf(scores.get(3)));
+            jLabel6.setText(String.valueOf(scores.get(4)));
+            jLabel7.setText(String.valueOf(scores.get(5)));
+            jLabel8.setText(String.valueOf(scores.get(6)));
+            jLabel9.setText(String.valueOf(scores.get(7)));
+            jLabel10.setText(String.valueOf(scores.get(8)));
+            jLabel11.setText(String.valueOf(scores.get(9)));
+        }catch(FileNotFoundException io){
+            System.out.println("file not found");
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +70,11 @@ public class Menu_High_Score extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setFont(new java.awt.Font("Free Pixel", 1, 18)); // NOI18N
@@ -64,7 +95,7 @@ public class Menu_High_Score extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Free Pixel", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 255, 0));
         jLabel1.setText("Space Invaders - Survival mode");
-        pnlScore.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
+        pnlScore.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -195,7 +226,7 @@ public class Menu_High_Score extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3))))
-                .addContainerGap(797, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +274,7 @@ public class Menu_High_Score extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlScore.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, 410));
+        pnlScore.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 240, 410));
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Free Pixel", 1, 36)); // NOI18N
@@ -259,6 +290,21 @@ public class Menu_High_Score extends javax.swing.JFrame {
             }
         });
         pnlScore.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, 149, 68));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enemy2_big.gif"))); // NOI18N
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 389, -1, -1));
+
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enemy3_big.gif"))); // NOI18N
+        jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
+
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enemy1_big.gif"))); // NOI18N
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 100));
+
+        pnlScore.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 560, 480));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,6 +354,10 @@ public class Menu_High_Score extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -316,6 +366,7 @@ public class Menu_High_Score extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel pnlScore;
     // End of variables declaration//GEN-END:variables
 }

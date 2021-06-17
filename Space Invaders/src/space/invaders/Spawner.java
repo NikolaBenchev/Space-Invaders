@@ -17,7 +17,7 @@ public class Spawner {
     private boolean[] freeShieldSpawnPoints = new boolean[3];
     
     public Spawner(){
-        this.spawnEnemyTime = 3;
+        this.spawnEnemyTime = 2;
         this.spawnShieldTime = 10;
     }
     

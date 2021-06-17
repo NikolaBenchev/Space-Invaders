@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Enemy extends Unit{
     private int score;
-    private float moveTime = 4f;
+    private float moveTime = 2.5f;
     private float currentMoveTime = 0;
 
     Enemy(Position position, int hp, int speed, int score, String name){

@@ -79,9 +79,9 @@ public class Board extends JPanel implements KeyListener, ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // add 0.005 to every timer
-        player.addToCurrentAttackTime(0.005f);
-        spawner.addToCurrentEnemySpawnTime(0.005f);
-        spawner.addToCurrentShieldSpawnTime(0.005f);
+        player.addToCurrentAttackTime(0.01f);
+        spawner.addToCurrentEnemySpawnTime(0.01f);
+        spawner.addToCurrentShieldSpawnTime(0.01f);
         flashTime += 0.005f;
         
         if(flashTime < 0.05f)
@@ -219,6 +219,7 @@ public class Board extends JPanel implements KeyListener, ActionListener{
             }
             
             if(enemies.get(i).getPosition().getY() >= Main.WINDOW_HEIGHT - Main.SIZE){
+                flashTime = 0f;
                 player.lowerHp();
                 enemies.remove(i);
             }

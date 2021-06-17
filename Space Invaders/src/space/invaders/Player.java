@@ -6,25 +6,7 @@ public class Player extends Unit{
     private int score;
     private float currentAttackTime;   
     private float attackSpeed = 0.5f;
-    private boolean movingLeft = false;
-    private boolean movingRight = false;
-
-    public boolean isMovingLeft() {
-        return movingLeft;
-    }
-
-    public void setMovingLeft(boolean movingLeft) {
-        this.movingLeft = movingLeft;
-    }
-
-    public boolean isMovingRight() {
-        return movingRight;
-    }
-
-    public void setMovingRight(boolean movingRight) {
-        this.movingRight = movingRight;
-    }
-    
+        
     Player(Position position, int Hp, int speed, String name){
         super(position, Hp, speed, name);
         this.score = 0;
